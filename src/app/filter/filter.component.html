@@ -1,0 +1,25 @@
+<h1>Count Filter</h1>
+<label>Starts with: <input type="text" name="start" [formControl]="start" /></label><br>
+<label><input type="checkbox" [value]="contains" (change)="contain = !contain">Contains: <input type="text" name="contains" [formControl]="contains" /></label><br>
+<label>Ends with: <input type="text" name="end" [formControl]="end" /></label><br>
+<label>Data: <textarea type="text" name="data" [formControl]="data"></textarea></label><br>
+<label>Filter sort: </label><input (click)="filterSort()" type="button" value="Filter Sort" /><br>
+<label>Regular sort: </label><input (click)="regSort()" type="button" value="Regular Sort" /><br>
+<label>Reset: </label><input (click)="reset()" type="button" value="Reset" />
+<p>Regex: /^({{start.value}})({{contains.value}}.*)+({{end.value}})$/</p>
+<p>State: {{contain}}</p>
+<div id="mapping">
+    <ol>
+        <li *ngFor="let entry of mapping.entries()">
+            <b>key: </b>{{entry[0]}} ==> <b>Value: </b>{{entry[1]}}
+        </li>
+    </ol>
+</div>
+<p>Size of filtered list: {{this.filtered.length}}</p>
+<div id="results">
+    <ul>
+        <li *ngFor="let item of filtered">
+            {{item}}
+        </li>
+    </ul>
+</div>
